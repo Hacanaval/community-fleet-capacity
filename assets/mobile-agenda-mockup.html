@@ -2,180 +2,215 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=400, initial-scale=1.0">
-  <title>Community Fleet Capacity — Mobile Agenda Mockup</title>
+  <meta name="viewport" content="width=1200, initial-scale=1.0">
+  <title>Community Fleet Capacity — Driver Agenda Mockup</title>
   <style>
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: #e5e7eb;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      background: #f3f4f6;
+      color: #111827;
+      padding: 32px;
     }
-    .phone {
-      width: 360px;
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
       background: #fff;
-      border-radius: 24px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
       overflow: hidden;
     }
     header {
       background: #065f46;
       color: #fff;
-      padding: 18px 20px;
-    }
-    header h1 { margin: 0; font-size: 18px; font-weight: 600; }
-    header p { margin: 4px 0 0; opacity: 0.85; font-size: 13px; }
-    .week-switch {
+      padding: 24px 32px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 20px;
+    }
+    header h1 { margin: 0; font-size: 22px; font-weight: 600; }
+    header p { margin: 6px 0 0; opacity: 0.85; font-size: 14px; }
+    .week-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 32px;
       background: #f0fdf4;
       border-bottom: 1px solid #d1fae5;
     }
-    .week-switch span { font-weight: 600; font-size: 14px; color: #064e3b; }
-    .week-switch button {
+    .week-bar span { font-weight: 600; font-size: 15px; color: #064e3b; }
+    .week-bar button {
       background: #065f46;
       color: #fff;
       border: none;
-      border-radius: 6px;
-      padding: 6px 12px;
+      border-radius: 8px;
+      padding: 8px 16px;
       font-size: 13px;
       cursor: pointer;
     }
-    .day {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 20px;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
       border-bottom: 1px solid #e5e7eb;
     }
-    .day-info h3 { margin: 0 0 4px; font-size: 15px; font-weight: 600; }
-    .day-info p { margin: 0; font-size: 13px; color: #6b7280; }
-    .toggle { display: flex; align-items: center; gap: 10px; }
+    .day-col {
+      padding: 20px 16px;
+      border-right: 1px solid #e5e7eb;
+      text-align: center;
+    }
+    .day-col:last-child { border-right: none; }
+    .day-col h3 {
+      margin: 0 0 4px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #111827;
+    }
+    .day-col .date {
+      font-size: 12px;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+    .zone {
+      font-size: 12px;
+      color: #047857;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
     .switch {
-      width: 44px;
-      height: 24px;
+      width: 48px;
+      height: 26px;
       background: #d1d5db;
-      border-radius: 12px;
+      border-radius: 13px;
       position: relative;
-      cursor: pointer;
+      margin: 0 auto 12px;
     }
     .switch.on { background: #065f46; }
     .switch::after {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       background: #fff;
       border-radius: 50%;
       top: 2px;
       left: 2px;
-      transition: left 0.2s;
     }
-    .switch.on::after { left: 22px; }
-    .capacity {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      color: #374151;
+    .switch.on::after { left: 24px; }
+    .capacity label {
+      display: block;
+      font-size: 11px;
+      color: #6b7280;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
     }
     .capacity input {
-      width: 50px;
-      padding: 6px;
+      width: 64px;
+      padding: 8px;
       border: 1px solid #d1d5db;
-      border-radius: 6px;
+      border-radius: 8px;
       text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .footer {
+      padding: 20px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f9fafb;
+    }
+    .footer p {
+      margin: 0;
       font-size: 14px;
+      color: #6b7280;
     }
     .save {
-      margin: 16px 20px 20px;
-      width: calc(100% - 40px);
-      padding: 14px;
+      padding: 12px 28px;
       background: #065f46;
       color: #fff;
       border: none;
       border-radius: 10px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="phone">
+  <div class="container">
     <header>
-      <h1>My Availability</h1>
-      <p>Hi Ana. Set the days you can work.</p>
+      <div>
+        <h1>Driver Availability</h1>
+        <p>Hi Ana. Set the days you can work this week.</p>
+      </div>
     </header>
 
-    <div class="week-switch">
-      <button>Previous</button>
-      <span>Sept 21 — Sept 27</span>
-      <button>Next</button>
+    <div class="week-bar">
+      <button>Previous week</button>
+      <span>September 21 — September 27, 2026</span>
+      <button>Next week</button>
     </div>
 
-    <div class="day">
-      <div class="day-info">
-        <h3>Monday, Sep 22</h3>
-        <p>Portville North</p>
-      </div>
-      <div class="toggle">
-        <div class="capacity">Max <input type="text" value="40"></div>
+    <div class="grid">
+      <div class="day-col">
+        <h3>Monday</h3>
+        <div class="date">Sep 22</div>
+        <div class="zone">Portville North</div>
         <div class="switch on"></div>
+        <div class="capacity">
+          <label>Max packages</label>
+          <input type="text" value="40" readonly>
+        </div>
       </div>
-    </div>
-
-    <div class="day">
-      <div class="day-info">
-        <h3>Tuesday, Sep 23</h3>
-        <p>Portville North</p>
-      </div>
-      <div class="toggle">
-        <div class="capacity">Max <input type="text" value="40"></div>
+      <div class="day-col">
+        <h3>Tuesday</h3>
+        <div class="date">Sep 23</div>
+        <div class="zone">Portville North</div>
         <div class="switch on"></div>
+        <div class="capacity">
+          <label>Max packages</label>
+          <input type="text" value="40" readonly>
+        </div>
       </div>
-    </div>
-
-    <div class="day">
-      <div class="day-info">
-        <h3>Wednesday, Sep 24</h3>
-        <p>Portville North</p>
-      </div>
-      <div class="toggle">
-        <div class="capacity">Max <input type="text" value="—" disabled></div>
+      <div class="day-col">
+        <h3>Wednesday</h3>
+        <div class="date">Sep 24</div>
+        <div class="zone">Portville North</div>
         <div class="switch"></div>
+        <div class="capacity">
+          <label>Max packages</label>
+          <input type="text" value="—" readonly>
+        </div>
       </div>
-    </div>
-
-    <div class="day">
-      <div class="day-info">
-        <h3>Thursday, Sep 25</h3>
-        <p>Portville North</p>
-      </div>
-      <div class="toggle">
-        <div class="capacity">Max <input type="text" value="35"></div>
+      <div class="day-col">
+        <h3>Thursday</h3>
+        <div class="date">Sep 25</div>
+        <div class="zone">Portville North</div>
         <div class="switch on"></div>
+        <div class="capacity">
+          <label>Max packages</label>
+          <input type="text" value="35" readonly>
+        </div>
       </div>
-    </div>
-
-    <div class="day">
-      <div class="day-info">
-        <h3>Friday, Sep 26</h3>
-        <p>Portville North</p>
-      </div>
-      <div class="toggle">
-        <div class="capacity">Max <input type="text" value="—" disabled></div>
+      <div class="day-col">
+        <h3>Friday</h3>
+        <div class="date">Sep 26</div>
+        <div class="zone">Portville North</div>
         <div class="switch"></div>
+        <div class="capacity">
+          <label>Max packages</label>
+          <input type="text" value="—" readonly>
+        </div>
       </div>
     </div>
 
-    <button class="save">Save week</button>
+    <div class="footer">
+      <p>3 available days · 115 total capacity this week</p>
+      <button class="save">Save week</button>
+    </div>
   </div>
 </body>
 </html>
