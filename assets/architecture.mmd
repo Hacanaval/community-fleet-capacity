@@ -1,0 +1,18 @@
+graph TD
+    Driver[Community driver] -->|Mobile web| Agenda[Mobile agenda Next.js app]
+    Planner[Operations planner] -->|Web| Dashboard[Operations dashboard Next.js app]
+
+    Agenda -->|Save availability| API[FastAPI on Cloud Run]
+    Dashboard -->|Read + export| API
+
+    API -->|Availability + capacity| DW[(Data warehouse)]
+    API -->|Driver roster| DW
+    API -->|Zone mapping| DW
+
+    Scheduler[Daily scheduler] --> RosterSync[Roster sync job]
+    Scheduler --> ZoneSync[Zone sync job]
+    RosterSync --> DW
+    ZoneSync --> DW
+    Spreadsheet[Shared spreadsheet] -->|Webhook| ZoneSync
+
+    API --> Auth[Firebase Authentication]

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200, initial-scale=1.0">
+  <title>Community Fleet Capacity — Operations Dashboard Mockup</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+      padding: 32px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    header {
+      background: #065f46;
+      color: #fff;
+      padding: 24px 32px;
+    }
+    header h1 { margin: 0; font-size: 22px; font-weight: 600; }
+    header p { margin: 6px 0 0; opacity: 0.85; font-size: 14px; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 24px 32px;
+      background: #f0fdf4;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #d1fae5;
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .card .label { font-size: 12px; color: #047857; text-transform: uppercase; letter-spacing: 0.5px; }
+    .card .value { font-size: 26px; font-weight: 700; margin-top: 6px; color: #064e3b; }
+    .toolbar {
+      padding: 20px 32px;
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid #e5e7eb;
+      flex-wrap: wrap;
+    }
+    .toolbar input, .toolbar select {
+      padding: 10px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .toolbar input { flex: 1; min-width: 200px; }
+    .toolbar button {
+      padding: 10px 18px;
+      background: #065f46;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .section { padding: 24px 32px; }
+    .section h2 { margin: 0 0 16px; font-size: 16px; font-weight: 600; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid #e5e7eb; }
+    th { color: #6b7280; font-weight: 500; background: #f9fafb; }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+    .available { background: #d1fae5; color: #065f46; }
+    .unavailable { background: #fee2e2; color: #991b1b; }
+    .unknown { background: #e5e7eb; color: #374151; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Community Fleet Capacity</h1>
+      <p>Driver availability by zone and date — September 24, 2026</p>
+    </header>
+
+    <div class="stats">
+      <div class="card">
+        <div class="label">Active drivers</div>
+        <div class="value">384</div>
+      </div>
+      <div class="card">
+        <div class="label">Available today</div>
+        <div class="value">312</div>
+      </div>
+      <div class="card">
+        <div class="label">Total capacity today</div>
+        <div class="value">1,840</div>
+      </div>
+      <div class="card">
+        <div class="label">Zones covered</div>
+        <div class="value">26</div>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <input type="text" placeholder="Search driver..." value="Portville North">
+      <select><option>Today</option><option>Tomorrow</option><option>Next 7 days</option></select>
+      <select><option>All zones</option><option>Portville North</option><option>Portville Downtown</option><option>Riverside</option></select>
+      <select><option>All statuses</option><option>Available</option><option>Unavailable</option><option>No answer</option></select>
+      <button>Export CSV</button>
+    </div>
+
+    <div class="section">
+      <h2>Driver availability</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Driver</th>
+            <th>Zone</th>
+            <th>Today</th>
+            <th>Tomorrow</th>
+            <th>Capacity</th>
+            <th>Last update</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ana Martinez</td>
+            <td>Portville North</td>
+            <td><span class="badge available">Available</span></td>
+            <td><span class="badge available">Available</span></td>
+            <td>40</td>
+            <td>10 min ago</td>
+          </tr>
+          <tr>
+            <td>Carlos Lopez</td>
+            <td>Portville Downtown</td>
+            <td><span class="badge unavailable">Unavailable</span></td>
+            <td><span class="badge available">Available</span></td>
+            <td>25</td>
+            <td>2 hours ago</td>
+          </tr>
+          <tr>
+            <td>Sofia Ruiz</td>
+            <td>Riverside</td>
+            <td><span class="badge available">Available</span></td>
+            <td><span class="badge unavailable">Unavailable</span></td>
+            <td>30</td>
+            <td>1 hour ago</td>
+          </tr>
+          <tr>
+            <td>Diego Herrera</td>
+            <td>Portville North</td>
+            <td><span class="badge unknown">No answer</span></td>
+            <td><span class="badge unknown">No answer</span></td>
+            <td>—</td>
+            <td>Yesterday</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
